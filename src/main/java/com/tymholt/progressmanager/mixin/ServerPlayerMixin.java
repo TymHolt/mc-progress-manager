@@ -1,6 +1,8 @@
 package com.tymholt.progressmanager.mixin;
 
+import com.tymholt.progressmanager.DimensionLock;
 import com.tymholt.progressmanager.McProgressManager;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
@@ -26,8 +28,18 @@ public abstract class ServerPlayerMixin {
     private void mcprogressmanager$blockLockedDimensions(TeleportTransition transition,
                                                    CallbackInfoReturnable<ServerPlayer> result) {
         final ServerPlayer player = (ServerPlayer) (Object) this;
+        final String playerName = player.getGameProfile().name();
         final ResourceKey<Level> dimension = transition.newLevel().dimension();
-        McProgressManager.logDebug(String.format("Player %s teleporting to dimension %s",
-                player.getGameProfile().name(), dimension.identifier()));
+        final String dimensionName = dimension.identifier().toString();
+
+        if (DimensionLock.isDimensionLocked(dimension)) {
+            player.sendSystemMessage(Component.literal(
+                    String.format("Dimension %s is currently locked", dimensionName)));
+            McProgressManager.logDebug(
+                    String.format("Player %s stopped from teleporting to dimension %s", playerName, dimensionName));
+            result.setReturnValue(null); // Returns
+        } else
+            McProgressManager.logDebug(
+                    String.format("Player %s teleporting to dimension %s", playerName, dimensionName));
     }
 }
