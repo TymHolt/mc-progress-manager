@@ -17,7 +17,6 @@ loom {
 	mods {
 		"mc-progress-manager" {
 			sourceSet sourceSets.main
-			sourceSet sourceSets.client
 		}
 	}
 }
