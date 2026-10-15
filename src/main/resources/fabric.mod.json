@@ -3,15 +3,15 @@
 	"id": "mc-progress-manager",
 	"version": "${version}",
 	"name": "mc-progress-manager",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A Minecraft Fabric mod to manage the game progression of players in a vanilla environment.",
 	"authors": [
-		"Me!"
+		"TymHolt"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/TymHolt/mc-progress-manager"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/mc-progress-manager/icon.png",
 	"environment": "*",
 	"entrypoints": {
