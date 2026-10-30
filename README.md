@@ -1,5 +1,7 @@
 # mc-progress-manager
 
+![Mod Icon](/src/main/resources/assets/mc-progress-manager/icon.png?raw=true "Mod Icon")
+
 A Minecraft Fabric mod to manage the game progression of players in a vanilla environment. This mod
 runs **server-side only**.
 
