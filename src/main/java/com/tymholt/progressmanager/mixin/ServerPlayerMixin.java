@@ -30,16 +30,13 @@ public abstract class ServerPlayerMixin {
         final ServerPlayer player = (ServerPlayer) (Object) this;
         final String playerName = player.getGameProfile().name();
         final ResourceKey<Level> dimension = transition.newLevel().dimension();
-        final String dimensionName = dimension.identifier().toString();
+        final String dimensionName = DimensionLock.getDimensionName(dimension);
 
         if (DimensionLock.isDimensionLocked(dimension)) {
-            player.sendSystemMessage(Component.literal(
-                    String.format("Dimension %s is currently locked", dimensionName)));
-            McProgressManager.logDebug(
-                    String.format("Player %s stopped from teleporting to dimension %s", playerName, dimensionName));
+            player.sendSystemMessage(Component.literal(String.format("%s is currently locked", dimensionName)));
+            McProgressManager.logDebug(String.format("%s stopped from teleporting to %s", playerName, dimensionName));
             result.setReturnValue(null); // Returns
         } else
-            McProgressManager.logDebug(
-                    String.format("Player %s teleporting to dimension %s", playerName, dimensionName));
+            McProgressManager.logDebug(String.format("%s teleporting to %s", playerName, dimensionName));
     }
 }

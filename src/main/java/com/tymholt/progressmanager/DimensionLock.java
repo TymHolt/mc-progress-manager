@@ -41,8 +41,8 @@ public enum DimensionLock {
      * Test if a given dimension, represented by the internal {@link Level}, is locked. If a {@link Level} is not
      * tracked in this enum, the default is not locked ({@code false}).
      *
-     * @param level The level to look for.
-     * @return {@code true} if the dimension is tracked and locked, {@code false} if not locked or not tracked here.
+     * @param  level The level to look for. Must not be {@code null}.
+     * @return       {@code true} if the dimension is tracked and locked, {@code false} if not locked or tracked here.
      */
     public static boolean isDimensionLocked(ResourceKey<Level> level) {
         for (DimensionLock dimensionLock : DimensionLock.values())
@@ -50,5 +50,20 @@ public enum DimensionLock {
                 return dimensionLock.isLocked();
 
         return false;
+    }
+
+    /**
+     * Get the dimension name of the given level. Either returns the enum identifier or the level identifier, depending
+     * on if the dimension is known by this mod.
+     *
+     * @param  level The level to look for. Must not be {@code null}.
+     * @return      The name of the given level, never {@code null}.
+     */
+    public static String getDimensionName(ResourceKey<Level> level) {
+        for (DimensionLock dimensionLock : DimensionLock.values())
+            if (dimensionLock.level.equals(level))
+                return dimensionLock.name();
+
+        return level.identifier().toString();
     }
 }

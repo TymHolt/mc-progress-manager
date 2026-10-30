@@ -18,4 +18,8 @@ Dimensions are unlocked by default. Use the command
 
 > dimlock status
 
-to poll the current lock-state of all lockable dimensions.
+to poll the current lock-state of all lockable dimensions. Use
+
+> dimlock \<lock/unlock\> \<dimension-name\>
+
+to (un-)lock a dimension.
