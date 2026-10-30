@@ -1,11 +1,21 @@
 # mc-progress-manager
 
-A Minecraft Fabric mod to manage the game progression of players in a vanilla environment.
+A Minecraft Fabric mod to manage the game progression of players in a vanilla environment. This mod
+runs **server-side only**.
 
 ## Requirements
 
-> **Java** 25
+- **Java** ```25```
+- **Minecraft** ```26.2```
+- **Fabric** ```19.5```
 
-> **Minecraft** 26.2
+## Features
 
-> **Fabric** 19.5
+#### Dimension Lock
+
+With this mod, you can lock dimensions. Players will not be able to travel to locked dimensions.
+Dimensions are unlocked by default. Use the command
+
+> dimlock status
+
+to poll the current lock-state of all lockable dimensions.

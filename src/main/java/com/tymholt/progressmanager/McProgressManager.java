@@ -1,6 +1,6 @@
 package com.tymholt.progressmanager;
 
-import com.tymholt.progressmanager.command.ProgressCommand;
+import com.tymholt.progressmanager.command.DimensionLockCommand;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -24,7 +24,7 @@ public class McProgressManager implements ModInitializer {
 		LOGGER.info("McProgressManager mod initialize...");
 
 		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-			ProgressCommand.register(dispatcher);
+			DimensionLockCommand.register(dispatcher);
 		});
 	}
 

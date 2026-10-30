@@ -15,11 +15,11 @@ import net.minecraft.network.chat.MutableComponent;
 /**
  * The command class for controlling the progress modifiers.
  */
-public final class ProgressCommand {
+public final class DimensionLockCommand {
 
     private static final int SUCCESS = 1;
 
-    private ProgressCommand() {}
+    private DimensionLockCommand() {}
 
     /**
      * Register the command. Designed to be called by the plugin class
@@ -29,7 +29,7 @@ public final class ProgressCommand {
      */
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         final LiteralArgumentBuilder<CommandSourceStack> progressCommand =
-                Commands.literal("progress").then(
+                Commands.literal("dimlock").then(
                     Commands.literal("status").executes(new ProgressStatusRunner()));
 
         dispatcher.register(progressCommand);
@@ -48,7 +48,7 @@ public final class ProgressCommand {
                 context.getSource().sendSuccess(() -> nameComponent.append(stateComponent), false);
             }
 
-            return ProgressCommand.SUCCESS;
+            return DimensionLockCommand.SUCCESS;
         }
     }
 }
