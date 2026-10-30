@@ -11,6 +11,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.server.permissions.Permissions;
 
 /**
  * The command class for controlling the progress modifiers.
@@ -35,6 +36,7 @@ public final class DimensionLockCommand {
      */
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         final LiteralArgumentBuilder<CommandSourceStack> dimlockCommand = Commands.literal("dimlock");
+        dimlockCommand.requires(source -> source.permissions().hasPermission(Permissions.COMMANDS_OWNER));
         dimlockCommand.then(Commands.literal("status").executes(new StatusRunner()));
 
         final LiteralArgumentBuilder<CommandSourceStack> lockSubCommand = Commands.literal("lock");

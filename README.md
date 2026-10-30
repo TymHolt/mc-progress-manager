@@ -14,7 +14,7 @@ runs **server-side only**.
 #### Dimension Lock
 
 With this mod, you can lock dimensions. Players will not be able to travel to locked dimensions.
-Dimensions are unlocked by default. Use the command
+Dimensions are unlocked by default. This command requires OP-permissions. Use the command
 
 > dimlock status
 
