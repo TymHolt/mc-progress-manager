@@ -17,17 +17,10 @@
 	"entrypoints": {
 		"main": [
 			"com.tymholt.progressmanager.McProgressManager"
-		],
-		"client": [
-			"com.tymholt.progressmanager.client.McProgressManagerClient"
 		]
 	},
 	"mixins": [
-		"mc-progress-manager.mixins.json",
-		{
-			"config": "mc-progress-manager.client.mixins.json",
-			"environment": "client"
-		}
+		"mc-progress-manager.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.19.5",
