@@ -3,7 +3,7 @@
 	"package": "com.tymholt.progressmanager.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
-		"ExampleMixin"
+		"ServerPlayerMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
