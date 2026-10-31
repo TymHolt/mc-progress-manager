@@ -5,8 +5,11 @@ import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 /**
  * The main class of this mod.
@@ -18,13 +21,28 @@ public class McProgressManager implements ModInitializer {
 
 	private static final boolean DEBUG_FLAG = true; // TODO Make this configurable
 	private static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	private static final ModConfig CONFIG = new ModConfig();
 
 	@Override
 	public void onInitialize() {
 		LOGGER.info("McProgressManager mod initialize...");
 
-		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+        try {
+            McProgressManager.CONFIG.load();
+        } catch (IOException exception) {
+			logError("Could not load config: " + exception.getMessage());
+        }
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
 			DimensionLockCommand.register(dispatcher);
+		});
+
+		ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
+			try {
+				McProgressManager.CONFIG.save();
+			} catch (IOException exception) {
+				logError("Could not save config: " + exception.getMessage());
+			}
 		});
 	}
 
@@ -56,5 +74,24 @@ public class McProgressManager implements ModInitializer {
 	public static void logDebug(String message) {
 		if (McProgressManager.inDebugMode())
 			logInfo(message);
+	}
+
+	/**
+	 * Log a given message with the mods logging backend.
+	 *
+	 * @param message The message to log. May be {@code null}.
+	 */
+	public static void logError(String message) {
+		if (message == null)
+			message = "null";
+
+		McProgressManager.LOGGER.error(message);
+	}
+
+	/**
+	 * @return The mod configuration instance.
+	 */
+	public static ModConfig getConfig() {
+		return McProgressManager.CONFIG;
 	}
 }

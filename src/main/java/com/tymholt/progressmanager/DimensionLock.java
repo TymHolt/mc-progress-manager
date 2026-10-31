@@ -66,4 +66,22 @@ public enum DimensionLock {
 
         return level.identifier().toString();
     }
+
+    /**
+     * Apply the given {@link ModConfig} to the dimension lock settings.
+     *
+     * @param config The configuration to apply. Must not be {@code null}.
+     */
+    public static void readFromConfig(ModConfig config) {
+        throw new RuntimeException("Not implemented");
+    }
+
+    /**
+     * Update the given {@link ModConfig} with the dimension lock settings.
+     *
+     * @param config The configuration to update. Must not be {@code null}.
+     */
+    public static void writeToConfig(ModConfig config) {
+        throw new RuntimeException("Not implemented");
+    }
 }
